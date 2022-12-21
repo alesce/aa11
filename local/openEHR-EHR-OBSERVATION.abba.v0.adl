@@ -26,7 +26,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"3b59ca1db9e4f6008ed37c6991445893">
+		["MD5-CAM-1.0.1"] = <"4b4f599715ac61d5987382b4fa0adc58">
 		["build_uid"] = <"7c9a7f6c-e154-3a1e-a490-f71dfaa593c4">
 	>
 
@@ -37,7 +37,15 @@ definition
 				events cardinality matches {1..*; unordered} matches {
 					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
 						data matches {
-							ITEM_TREE[at0003] matches {*}    -- Tree
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- DV_QUANTITY
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+								}
+							}
 						}
 					}
 				}
@@ -64,6 +72,10 @@ ontology
 				["at0003"] = <
 					text = <"Tree">
 					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"DV_QUANTITY">
+					description = <"">
 				>
 			>
 		>
